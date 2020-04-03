@@ -15,7 +15,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        String CREATE_CARS_TABLE = "CREATE TABLE "+ Util.DATABASE_NAME+"("
+                +Util.KEY_ID+" INTEGER PRIMARY KEY,"
+                +Util.KEY_NAME+" TEXT,"
+                +Util.KEY_PRICE+" TEXT"+")";
     }
 
     @Override
