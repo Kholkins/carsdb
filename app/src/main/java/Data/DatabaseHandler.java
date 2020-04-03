@@ -2,6 +2,7 @@ package Data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -39,4 +40,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Car getCar(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Util.TABLE_NAME,
+                new String[] {Util.KEY_ID,Util.KEY_NAME,Util.KEY_PRICE},
+                Util.KEY_ID+"=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+        if (cursor!=null){
+            cursor.moveToFirst();
+        }
+
+        Car car = new Car(Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2));
+        return car;
+    }
 }
