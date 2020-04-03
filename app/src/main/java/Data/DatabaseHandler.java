@@ -19,10 +19,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 +Util.KEY_ID+" INTEGER PRIMARY KEY,"
                 +Util.KEY_NAME+" TEXT,"
                 +Util.KEY_PRICE+" TEXT"+")";
+        db.execSQL(CREATE_CARS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS "+Util.TABLE_NAME);
+        onCreate(db);
     }
 }
