@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Model.Car;
 import Utils.Util;
 
@@ -57,5 +60,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Car car = new Car(Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2));
         return car;
+    }
+
+    public List<Car> getAllCar (){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<Car> carsList = new ArrayList<>();
+        String selectAllCars = "SELECT * FROM "+ Util.TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(selectAllCars,null);
+        if (cursor.moveToFirst()){
+            do {
+                Car car = new Car();
+                car.setId(Integer.parseInt(cursor.getString(0)));
+                car.setName(cursor.getString(1));
+                car.setPrice(cursor.getString(2));
+                carsList.add(car);
+            }while (cursor.moveToNext());
+        }
+        return carsList;
+
     }
 }
