@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         databaseHandler.addCar(new Car("Opel", "25000"));
         databaseHandler.addCar(new Car("Kia", "31000"));
 
-        List<Car> listCars = databaseHandler.getAllCar();
+        List<Car> listCars = databaseHandler.getAllCars();
         for (Car car: listCars){
             Log.d("car: ", "id "+car.getId()+", name "+car.getName()+", price "+ car.getPrice());
         }
