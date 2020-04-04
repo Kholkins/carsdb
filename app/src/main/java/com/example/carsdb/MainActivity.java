@@ -3,6 +3,7 @@ package com.example.carsdb;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.List;
 
@@ -23,5 +24,8 @@ public class MainActivity extends AppCompatActivity {
         databaseHandler.addCar(new Car("Kia", "31000"));
 
         List<Car> listCars = databaseHandler.getAllCar();
+        for (Car car: listCars){
+            Log.d("car: ", "id "+car.getId()+", name "+car.getName()+", price "+ car.getPrice());
+        }
     }
 }
